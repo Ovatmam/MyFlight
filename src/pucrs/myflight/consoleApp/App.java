@@ -62,6 +62,11 @@ public class App {
 		//System.out.println(a1.toString());
 		//System.out.println(ap1.toString());
 		//System.out.println(r1.toString());
-		System.out.println(v1.toString());
+		//System.out.println(v1.toString());
+
+		double d = Geo.distancia(ap1.getLocal(), ap2.getLocal());
+
+		System.out.printf("\nDistancia entre POA e GRU: %.2fkm", d);
+		System.out.println("Total de empresas: "+ CiaAerea.getTotalCias());
 	}
 }
