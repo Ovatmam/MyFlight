@@ -17,10 +17,13 @@ public class GerenciadorCias {
 		empresas.remove(index);
 	}
 
+	/***
+	 * 
+	 * @param	codigo da compania para pesquisa
+	 * @return	CiaAerea que contém aquele codigo
+	 */
 	public CiaAerea buscarCodigo(String codigo) {
-		CiaAerea c1;
-		for(int i = 0; i < empresas.size(); i++) {
-			c1 = empresas.get(i);
+		for(CiaAerea c1 : empresas) {
 			if(c1.getCodigo().equals(codigo))
 				return c1;
 		}
