@@ -1,8 +1,8 @@
-//Eduardo Enes Traunig
+//Eduardo Enes Traunig, Gabriel Dalbem
 
 package pucrs.myflight.consoleApp;
 
-import javax.swing.GroupLayout;
+//import javax.swing.GroupLayout;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -18,6 +18,9 @@ import pucrs.myflight.modelo.GerenciadorRotas;
 import pucrs.myflight.modelo.GerenciadorVoos;
 import pucrs.myflight.modelo.Rota;
 import pucrs.myflight.modelo.Voo;
+import pucrs.myflight.modelo.VooEscalas;
+import pucrs.myflight.modelo.VooVariasEscalas;
+import pucrs.myflight.modelo.Voo.Status;
 
 public class App {
 
@@ -58,15 +61,56 @@ public class App {
 		Voo v2 = new Voo(r2, datahora, duracao);
 		voos.adicionar(v2);
 
+		VooEscalas ve1 = new VooEscalas(r1, r2, datahora, duracao);
+
+		VooVariasEscalas vve1 = new VooVariasEscalas(r1, 3, datahora, duracao);
+		vve1.adicionarRota(r2);
+		vve1.adicionarRota(r1);
+
+		System.out.println(r1.toString());
+		System.out.println(r2.toString());
+
 		//System.out.println(c1.toString());
 		//System.out.println(a1.toString());
 		//System.out.println(ap1.toString());
 		//System.out.println(r1.toString());
 		//System.out.println(v1.toString());
 
-		double d = Geo.distancia(ap1.getLocal(), ap2.getLocal());
+		//double d = Geo.distancia(ap1.getLocal(), ap2.getLocal());
 
-		System.out.printf("\nDistancia entre POA e GRU: %.2fkm", d);
-		System.out.println("Total de empresas: "+ CiaAerea.getTotalCias());
+		//System.out.printf("\nDistancia entre POA e GRU: %.2fkm", d);
+		//System.out.println("Total de empresas: "+ CiaAerea.getTotalCias());
+
+		testarVoo(v1);
+		testarVooEscalas(ve1);
+		testarVooVariasEscalas(vve1);
+	}
+
+	public static void testarVoo(Voo v1) {
+		System.out.println("____________________________________________________________________________");
+		System.out.println("VOO: ");
+		System.out.println(" - getRota: " + v1.getRota().toString());
+		System.out.println(" - getDataHora: " + v1.getDatahora().toString());
+		System.out.println(" - getDuracao: " + v1.getDuracao().toString());
+		v1.setStatus(Status.ATRASADO);
+		System.out.println(" - getStatus: " + v1.getStatus());
+		System.out.println(" - toString: " + v1.toString());
+		System.out.println("____________________________________________________________________________");
+	}
+
+	public static void testarVooEscalas(VooEscalas v1) {
+		System.out.println("____________________________________________________________________________");
+		System.out.println("VOO ESCALAS: ");
+		System.out.println(" - getRotaFinal: " + v1.getRotaFinal());
+		System.out.println(" - toString: \n" + v1.toString());
+		System.out.println("____________________________________________________________________________");
+	}
+
+	public static void testarVooVariasEscalas(VooVariasEscalas v1) {
+		System.out.println("____________________________________________________________________________");
+		System.out.println("VOO VARIAS ESCALAS: ");
+		System.out.println(" - getRotaFinal: " + v1.getRotaFinal());
+		System.out.println(" - toString: \n" + v1.toString());
+		System.out.println("____________________________________________________________________________");
 	}
 }

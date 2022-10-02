@@ -25,25 +25,13 @@ public class Voo {
 		this.duracao = duracao;
 		this.status = Status.CONFIRMADO; // default é confirmado
 	}
-	
-	public void setRota(Rota r1) {
-		rota = r1;
-	}
 
 	public Rota getRota() {
 		return rota;
 	}
-
-	public void setDataHora(LocalDateTime datahora) {
-		this.datahora = datahora;
-	}
 	
 	public LocalDateTime getDatahora() {
 		return datahora;
-	}
-
-	public void setDuracao(Duration duracao) {
-		this.duracao = duracao;
 	}
 	
 	public Duration getDuracao() {
@@ -60,8 +48,6 @@ public class Voo {
 
 	@Override
 	public String toString() {
-		String str = "Voo: " + datahora.toString() + duracao.toString() + rota.toString() + status;
-
-		return str;
+		return " " + status + "\t" + datahora.toString() + "\t" + rota.toString();
 	}
 }

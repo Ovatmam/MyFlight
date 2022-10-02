@@ -47,9 +47,8 @@ public class Rota implements Comparable<Rota> {
 
 	@Override
 	public String toString() {
-		String str = "Rota: " + cia.toString() +  "\t" + origem.toString() + destino.toString() + aeronave.toString();
+		return cia.toString() +  "\t " + origem.toString() + "\t -> \t" + destino.toString();
 
-		return str;
 	}
 
 	@Override

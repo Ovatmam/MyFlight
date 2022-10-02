@@ -26,7 +26,6 @@ public class CiaAerea {
 	
 	@Override
 	public String toString() {
-		String str = "Código " + codigo + ", " + nome;
-		return str; 
+		return codigo + ", " + nome;
 	}
 }
