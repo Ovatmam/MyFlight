@@ -17,9 +17,8 @@ import pucrs.myflight.modelo.GerenciadorCias;
 import pucrs.myflight.modelo.GerenciadorRotas;
 import pucrs.myflight.modelo.GerenciadorVoos;
 import pucrs.myflight.modelo.Rota;
-import pucrs.myflight.modelo.Voo;
+import pucrs.myflight.modelo.VooDireto;
 import pucrs.myflight.modelo.VooEscalas;
-import pucrs.myflight.modelo.VooVariasEscalas;
 import pucrs.myflight.modelo.Voo.Status;
 
 public class App {
@@ -28,7 +27,6 @@ public class App {
 		System.out.println("\nMyFlight project...");
 
 		LocalDateTime datahora = LocalDateTime.of(2022, 01, 01, 18, 30);
-		Duration duracao = Duration.ofMinutes(120);
 
 		GerenciadorAeronaves avioes = new GerenciadorAeronaves();
 		GerenciadorAeroportos aeroportos = new GerenciadorAeroportos();
@@ -56,19 +54,14 @@ public class App {
 		Rota r2 = new Rota(c2, ap2, ap1, a2);
 		rotas.adicionar(r2);
 
-		Voo v1 = new Voo(r1, datahora, duracao);
+		VooDireto v1 = new VooDireto(r1, datahora);
 		voos.adicionar(v1);
-		Voo v2 = new Voo(r2, datahora, duracao);
+		VooDireto v2 = new VooDireto(r2, datahora);
 		voos.adicionar(v2);
 
-		VooEscalas ve1 = new VooEscalas(r1, r2, datahora, duracao);
-
-		VooVariasEscalas vve1 = new VooVariasEscalas(r1, 3, datahora, duracao);
-		vve1.adicionarRota(r2);
-		vve1.adicionarRota(r1);
-
-		System.out.println(r1.toString());
-		System.out.println(r2.toString());
+		VooEscalas ve1 = new VooEscalas(r1, datahora);
+		ve1.adicionaRota(r2);
+		ve1.adicionaRota(r1);
 
 		//System.out.println(c1.toString());
 		//System.out.println(a1.toString());
@@ -81,36 +74,28 @@ public class App {
 		//System.out.printf("\nDistancia entre POA e GRU: %.2fkm", d);
 		//System.out.println("Total de empresas: "+ CiaAerea.getTotalCias());
 
-		testarVoo(v1);
+		//testarVooDireto(v1);
 		testarVooEscalas(ve1);
-		testarVooVariasEscalas(vve1);
 	}
 
-	public static void testarVoo(Voo v1) {
+	public static void testarVooDireto(VooDireto v1) {
 		System.out.println("____________________________________________________________________________");
 		System.out.println("VOO: ");
-		System.out.println(" - getRota: " + v1.getRota().toString());
-		System.out.println(" - getDataHora: " + v1.getDatahora().toString());
+		//System.out.println(" - getRota: " + v1.getRota().toString());
+		//System.out.println(" - getDataHora: " + v1.getDatahora().toString());
 		System.out.println(" - getDuracao: " + v1.getDuracao().toString());
-		v1.setStatus(Status.ATRASADO);
-		System.out.println(" - getStatus: " + v1.getStatus());
-		System.out.println(" - toString: " + v1.toString());
+		//v1.setStatus(Status.ATRASADO);
+		//System.out.println(" - getStatus: " + v1.getStatus());
+		//System.out.println(" - toString: " + v1.toString());
 		System.out.println("____________________________________________________________________________");
 	}
 
 	public static void testarVooEscalas(VooEscalas v1) {
 		System.out.println("____________________________________________________________________________");
 		System.out.println("VOO ESCALAS: ");
-		System.out.println(" - getRotaFinal: " + v1.getRotaFinal());
-		System.out.println(" - toString: \n" + v1.toString());
-		System.out.println("____________________________________________________________________________");
-	}
-
-	public static void testarVooVariasEscalas(VooVariasEscalas v1) {
-		System.out.println("____________________________________________________________________________");
-		System.out.println("VOO VARIAS ESCALAS: ");
-		System.out.println(" - getRotaFinal: " + v1.getRotaFinal());
-		System.out.println(" - toString: \n" + v1.toString());
+		//System.out.println(" - getRotaFinal: " + v1.getRotaFinal());
+		System.out.println(" - getDuracao: " + v1.getDuracao().toString());
+		//System.out.println(" - toString: \n" + v1.toString());
 		System.out.println("____________________________________________________________________________");
 	}
 }
